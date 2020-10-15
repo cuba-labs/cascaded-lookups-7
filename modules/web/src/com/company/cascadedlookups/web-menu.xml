@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
+    <menu id="application-cascadedlookups" insertBefore="administration" caption="mainMsg://menu_config.application-cascadedlookups">
+        <item screen="cascadedlookups_Country.browse" caption="mainMsg://menu_config.cascadedlookups_Country.browse"/>
+        <item screen="cascadedlookups_City.browse" caption="mainMsg://menu_config.cascadedlookups_City.browse"/>
+        <item screen="cascadedlookups_Address.browse" caption="mainMsg://menu_config.cascadedlookups_Address.browse"/>
+    </menu>
+</menu-config>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://addressEdit.caption"
+        focusComponent="form"
+        messagesPack="com.company.cascadedlookups.web.screens.address">
+    <data>
+        <instance id="addressDc"
+                  class="com.company.cascadedlookups.entity.Address">
+            <view extends="_local">
+                <property name="city" view="_minimal"/>
+                <property name="country" view="_minimal"/>
+            </view>
+            <loader id="addressDl"/>
+        </instance>
+        <collection id="countriesDc" class="com.company.cascadedlookups.entity.Country">
+            <view extends="_local"/>
+            <loader id="countriesDl">
+                <query>
+                    <![CDATA[select e from cascadedlookups_Country e]]>
+                </query>
+            </loader>
+        </collection>
+        <collection id="citiesDc" class="com.company.cascadedlookups.entity.City">
+            <view extends="_local"/>
+            <loader id="citiesDl">
+                <query>
+                    <![CDATA[select e from cascadedlookups_City e where e.country = :country]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="addressDc">
+            <column width="350px">
+                <lookupField id="countryField" property="country" optionsContainer="countriesDc"/>
+                <lookupField id="cityField" property="city" optionsContainer="citiesDc"/>
+                <textField id="addressLineField" property="addressLine"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>
